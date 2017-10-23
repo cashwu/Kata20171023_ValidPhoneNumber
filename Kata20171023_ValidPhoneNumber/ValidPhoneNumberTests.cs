@@ -70,12 +70,12 @@ namespace Kata20171023_ValidPhoneNumber
         public bool ValidPhoneNumber(string phoneNumber)
         {
             if (phoneNumber[0] != '('
-                || !phoneNumber.Substring(1, 3).All(a => int.TryParse(a.ToString(), out int b))
+                || !phoneNumber.Substring(1, 3).All(a => int.TryParse(a.ToString(), out var b))
                 || phoneNumber[4] != ')'
                 || phoneNumber[5] != ' '
-                || !phoneNumber.Substring(6, 3).All(a => int.TryParse(a.ToString(), out int b))
+                || !phoneNumber.Substring(6, 3).All(a => int.TryParse(a.ToString(), out var b))
                 || phoneNumber[9] != '-'
-                || !phoneNumber.Substring(10, 4).All(a => int.TryParse(a.ToString(), out int b)))
+                || !phoneNumber.Substring(10, 4).All(a => int.TryParse(a.ToString(), out var b)))
             {
                 return false;
             }
