@@ -35,6 +35,13 @@ namespace Kata20171023_ValidPhoneNumber
             var result = kata.ValidPhoneNumber("(aaa) 456-7890");
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void input_not_dash()
+        {
+            var result = kata.ValidPhoneNumber("(123) 456 7890");
+            Assert.IsFalse(result);
+        }
     }
 
     public class Kata
@@ -43,7 +50,8 @@ namespace Kata20171023_ValidPhoneNumber
         {
             if (phoneNumber[0] != '('
                 || phoneNumber[4] != ')'
-                || !phoneNumber.Substring(1, 3).All(a => int.TryParse(a.ToString(), out int b)))
+                || !phoneNumber.Substring(1, 3).All(a => int.TryParse(a.ToString(), out int b))
+                || phoneNumber[9] != '-')
             {
                 return false;
             }
