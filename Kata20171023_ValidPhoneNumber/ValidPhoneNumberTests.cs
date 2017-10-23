@@ -13,12 +13,23 @@ namespace Kata20171023_ValidPhoneNumber
             var result = kata.ValidPhoneNumber("(123) 456-7890");
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void input_not_left_brackets()
+        {
+            var result = kata.ValidPhoneNumber("123) 456-7890");
+            Assert.IsFalse(result);
+        }
     }
 
     public class Kata
     {
         public bool ValidPhoneNumber(string phoneNumber)
         {
+            if (!phoneNumber.StartsWith("("))
+            {
+                return false;
+            }
             return true;
         }
     }
