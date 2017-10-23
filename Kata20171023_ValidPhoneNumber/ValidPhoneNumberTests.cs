@@ -49,6 +49,20 @@ namespace Kata20171023_ValidPhoneNumber
             var result = kata.ValidPhoneNumber("(123) aaa-7890");
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void input_not_white_space_in_right_brackets()
+        {
+            var result = kata.ValidPhoneNumber("(123)-123-7890");
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void input_not_four_number_in_end()
+        {
+            var result = kata.ValidPhoneNumber("(123) 123-aaaa");
+            Assert.IsFalse(result);
+        }
     }
 
     public class Kata
@@ -56,10 +70,12 @@ namespace Kata20171023_ValidPhoneNumber
         public bool ValidPhoneNumber(string phoneNumber)
         {
             if (phoneNumber[0] != '('
-                || phoneNumber[4] != ')'
                 || !phoneNumber.Substring(1, 3).All(a => int.TryParse(a.ToString(), out int b))
+                || phoneNumber[4] != ')'
+                || phoneNumber[5] != ' '
+                || !phoneNumber.Substring(6, 3).All(a => int.TryParse(a.ToString(), out int b))
                 || phoneNumber[9] != '-'
-                || !phoneNumber.Substring(6, 3).All(a => int.TryParse(a.ToString(), out int b)))
+                || !phoneNumber.Substring(10, 4).All(a => int.TryParse(a.ToString(), out int b)))
             {
                 return false;
             }
