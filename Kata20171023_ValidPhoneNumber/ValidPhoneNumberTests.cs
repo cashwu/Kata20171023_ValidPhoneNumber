@@ -63,13 +63,21 @@ namespace Kata20171023_ValidPhoneNumber
             var result = kata.ValidPhoneNumber("(123) 123-aaaa");
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void input_more_than_ten_number()
+        {
+            var result = kata.ValidPhoneNumber("(123) 123-45642");
+            Assert.IsFalse(result);
+        }
     }
 
     public class Kata
     {
         public bool ValidPhoneNumber(string phoneNumber)
         {
-            if (phoneNumber[0] != '('
+            if (phoneNumber.Length != 14
+                || phoneNumber[0] != '('
                 || !phoneNumber.Substring(1, 3).All(a => int.TryParse(a.ToString(), out var b))
                 || phoneNumber[4] != ')'
                 || phoneNumber[5] != ' '
