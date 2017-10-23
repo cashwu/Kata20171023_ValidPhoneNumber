@@ -5,12 +5,13 @@ namespace Kata20171023_ValidPhoneNumber
     [TestClass]
     public class ValidPhoneNumberTests
     {
+        private Kata kata = new Kata();
+
         [TestMethod]
         public void input_real_phone_number()
         {
-            var kata = new Kata();
             var result = kata.ValidPhoneNumber("(123) 456-7890");
-            Assert.AreEqual(true, result);
+            Assert.IsTrue(result);
         }
     }
 
